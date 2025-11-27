@@ -1,0 +1,19 @@
+﻿@page "/customers"
+
+<h3>List Customers</h3>
+
+<p>@message</p>
+
+<p>@GetCurrentDate()</p>
+
+
+@code {
+
+    private string message = "Lorem ipsum...";
+
+    private DateTime GetCurrentDate()
+    {
+        return DateTime.Now;
+    }
+
+}
