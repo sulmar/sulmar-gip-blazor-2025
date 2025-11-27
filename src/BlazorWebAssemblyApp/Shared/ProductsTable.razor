@@ -1,0 +1,40 @@
+﻿@using Domain.Models
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Color</th>
+            <th>UnitPrice</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Products)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Color</td>
+                <td>@item.UnitPrice</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td>Count: @Products.Count</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+@code {
+
+    [Parameter]
+    public List<Product> Products { get; set; }
+
+}

@@ -1,0 +1,22 @@
+﻿@page "/products"
+
+<h3>List Products</h3>
+
+<ProductsTable Products="@products" />
+
+@code {
+
+
+    private List<Product> products;
+
+    protected override void OnInitialized()
+    {
+        products = new List<Product>
+        {
+            new Product{ Id = 1, Name ="a", Description = "Lorem", Color = "red", UnitPrice = 9.99m },
+            new Product{ Id = 2, Name ="b", Description = "Ipsum", Color = "blue", UnitPrice = 19.99m },
+            new Product{ Id = 3, Name ="c", Description = "Dores", Color = "red", UnitPrice = 29.99m },
+        };
+    }
+
+}
