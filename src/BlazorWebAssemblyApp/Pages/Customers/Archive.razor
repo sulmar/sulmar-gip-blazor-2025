@@ -1,0 +1,52 @@
+﻿@page "/customers/archive"
+@using Domain.Models
+
+<h3>Archive List Customers</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var customer in customers)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.Name</td>
+                <td>@customer.Email</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td>Count: @customers.Count</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+
+@code {
+
+
+    private List<Customer> customers = [];
+
+    protected override void OnInitialized()
+    {
+        customers = new List<Customer>
+        {
+            new Customer { Id =1, Name = "a", Email = "a@domain.com"},
+            new Customer { Id =2, Name = "b", Email = "b@domain.com"},
+            new Customer { Id =3, Name = "c", Email = "c@domain.com", IsArchived = true },
+        };
+
+        customers = customers.Where(c => c.IsArchived).ToList();
+    }
+
+}

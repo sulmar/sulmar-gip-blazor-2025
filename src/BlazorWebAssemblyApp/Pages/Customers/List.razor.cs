@@ -19,7 +19,9 @@ public partial class List
         {
             new Customer { Id =1, Name = "a", Email = "a@domain.com"},
             new Customer { Id =2, Name = "b", Email = "b@domain.com"},
-            new Customer { Id =3, Name = "c", Email = "c@domain.com"},
+            new Customer { Id =3, Name = "c", Email = "c@domain.com", IsArchived = true },
         };
+
+        customers = customers.Where(c => !c.IsArchived).ToList();
     }
 }
