@@ -1,0 +1,34 @@
+﻿@typeparam TItem
+
+<table class="table table-bordered table-striped">
+    <thead>
+        @HeaderTemplate
+    </thead>
+
+    <tbody>
+        @foreach (var item in Items)
+        {
+           @RowTemplate(item)
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td>Count: @Items.Count</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+@code {
+
+    [Parameter]
+    public List<TItem> Items { get; set; }
+
+    [Parameter]
+    public RenderFragment HeaderTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItem> RowTemplate { get; set; }
+
+}
