@@ -2,13 +2,35 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-        @HeaderTemplate
+        @if (@HeaderTemplate is null)
+        {
+            <tr>
+                @foreach (var field in Fields)
+                {
+                    <th>@field</th>
+                }                                
+            </tr>
+        }
+        else
+            @HeaderTemplate
+
     </thead>
 
     <tbody>
         @foreach (var item in Items)
         {
-           @RowTemplate(item)
+           @if (RowTemplate is  null)
+           {
+                <tr>
+                        @foreach (var field in Fields)
+                    {
+                            @* <td>@item.GetType().GetProperty(field).GetValue(item)</td> *@
+                            <td>@BindValue(item, field)</td>
+                    }
+                </tr>
+           }
+            else
+            @RowTemplate(item)
         }
     </tbody>
 
@@ -26,9 +48,16 @@
     public List<TItem> Items { get; set; }
 
     [Parameter]
+    public string[] Fields { get; set; }
+
+    [Parameter]
     public RenderFragment HeaderTemplate { get; set; }
 
     [Parameter]
     public RenderFragment<TItem> RowTemplate { get; set; }
 
+    string BindValue(TItem item, string propertyName)
+    {
+        return item.GetType().GetProperty(propertyName).GetValue(item).ToString();
+    }
 }

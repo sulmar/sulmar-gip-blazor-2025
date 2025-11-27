@@ -1,26 +1,12 @@
 ﻿@using Domain.Models
 
-<ItemsTable Items="@Customers" Context="item" >
-    <HeaderTemplate>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-    </HeaderTemplate>
-
-    <RowTemplate>
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.Name</td>
-            <td>@item.Email</td>
-        </tr>
-    </RowTemplate>
-</ItemsTable>
+<ItemsTable Items="@Customers" Context="item" Fields="@fields" />
 
 @code {
 
     [Parameter]
     public List<Customer> Customers { get; set;  }
+
+    private string[] fields = ["Id", "Name", "Email"];
 
 }
