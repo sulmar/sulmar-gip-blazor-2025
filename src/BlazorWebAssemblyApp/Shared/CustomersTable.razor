@@ -1,6 +1,6 @@
 ﻿@using Domain.Models
 
-<ItemsTable Items="@Customers" >
+<ItemsTable Items="@Customers" Context="item" >
     <HeaderTemplate>
         <tr>
             <th>Id</th>
@@ -11,9 +11,9 @@
 
     <RowTemplate>
         <tr>
-            <td>@context.Id</td>
-            <td>@context.Name</td>
-            <td>@context.Email</td>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
         </tr>
     </RowTemplate>
 </ItemsTable>
