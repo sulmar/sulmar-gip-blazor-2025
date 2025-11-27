@@ -17,14 +17,13 @@
     </thead>
 
     <tbody>
-       
         @foreach (var customer in customers)
         {
             <tr>
                 <td>@customer.Id</td>
                 <td>@customer.Name</td>
                 <td>@customer.Email</td>
-            </tr>            
+            </tr>
         }
     </tbody>
 
@@ -32,31 +31,8 @@
         <tr>
             <td>Count: @customers.Count</td>
         </tr>
-
     </tfoot>
-    
+
 </table>
 
 
-@code {
-
-    private string message = "Lorem ipsum...";
-
-    private List<Customer> customers = [];
-
-    private DateTime GetCurrentDate()
-    {
-        return DateTime.Now;
-    }
-
-    protected override void OnInitialized()
-    {
-        customers = new List<Customer>
-        {
-            new Customer { Id =1, Name = "a", Email = "a@domain.com"},
-            new Customer { Id =2, Name = "b", Email = "b@domain.com"},
-            new Customer { Id =3, Name = "c", Email = "c@domain.com"},
-        };
-    }
-
-}
