@@ -7,12 +7,35 @@
 
 <p>@GetCurrentDate()</p>
 
-<ul>
-    @foreach (var customer in customers)
-    {
-        <li>@customer.Id @customer.Name @customer.Email</li>
-    }
-</ul>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+       
+        @foreach (var customer in customers)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.Name</td>
+                <td>@customer.Email</td>
+            </tr>            
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td>Count: @customers.Count</td>
+        </tr>
+
+    </tfoot>
+    
+</table>
 
 
 @code {
