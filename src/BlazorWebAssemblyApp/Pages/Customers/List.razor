@@ -1,28 +1,40 @@
 ﻿@page "/customers"
 
+
 <Header><img src="/favicon.png" /> Customers List</Header>
 
 <p>@message</p>
 
 <p>@GetCurrentDate()</p>
 
-<CustomersTable Customers=@customers  />
+@if (@customers is null)
+{
+   <p>Loading...</p>
+}
+else
+{
+    <CustomersTable Customers=@customers  />
+}
 
 
 @code {
 
     private string message = "Lorem ipsum...";
 
-    private List<Customer> customers = [];
+    private List<Customer>? customers;
+
+    [Inject]
+    private HttpClient http { get; set; }
 
     private DateTime GetCurrentDate()
     {
         return DateTime.Now;
     }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        customers = 
+        // TODO: wyslij request
+        customers = await http.GetFromJsonAsync<List<Customer>>("api/customers");
 
         customers = customers.Where(c => !c.IsArchived).ToList();
     }
