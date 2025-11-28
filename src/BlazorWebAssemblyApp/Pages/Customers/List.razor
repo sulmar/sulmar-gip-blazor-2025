@@ -1,5 +1,5 @@
 ﻿@page "/customers"
-@inject HttpClient http
+@inject IAsyncCustomerService Api
 
 <Header><img src="/favicon.png" /> Customers List</Header>
 
@@ -32,9 +32,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        // TODO: wyslij request
-        customers = await http.GetFromJsonAsync<List<Customer>>("api/customers");
-
-        customers = customers.Where(c => !c.IsArchived).ToList();
+        customers = await Api.GetActive();
     }
 }

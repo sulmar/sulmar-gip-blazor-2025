@@ -1,5 +1,5 @@
 ﻿@page "/customers/archive"
-@inject HttpClient http
+@inject IAsyncCustomerService Api
 
 <h3>Archive List Customers</h3>
 
@@ -16,11 +16,11 @@ else
 
 @code {
 
-    private List<Customer> customers;
+    private List<Customer>? customers;
 
     protected override async Task OnInitializedAsync()
     {
-        customers = await http.GetFromJsonAsync<List<Customer>>("api/customers/archive");
+        customers = await Api.GetArchive();
     }
 
 }
