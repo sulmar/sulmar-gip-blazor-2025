@@ -24,6 +24,11 @@ public class FakeCustomerRepository : ICustomerRepository
 
     public List<Customer> GetAll()
     {
-        return _customers.Values.ToList();
+        return _customers.Values.Where(c => !c.IsArchived).ToList();
+    }
+
+    public List<Customer> GetArchive()
+    {
+        return _customers.Values.Where(c => c.IsArchived).ToList();
     }
 }

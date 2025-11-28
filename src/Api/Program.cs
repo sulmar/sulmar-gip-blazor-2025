@@ -27,6 +27,7 @@ app.UseCors(); // Middleware
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("api/customers", (ICustomerRepository repository) => repository.GetAll()); // Wstrzykiwanie zaleznosci
+app.MapGet("api/customers/archive", (ICustomerRepository repository) => repository.GetArchive());
 app.MapGet("api/customers/{id}", (int id, ICustomerRepository repository) => repository.Get(id));
 
 app.Run();

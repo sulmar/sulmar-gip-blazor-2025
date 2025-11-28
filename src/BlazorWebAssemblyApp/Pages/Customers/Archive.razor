@@ -1,24 +1,26 @@
 ﻿@page "/customers/archive"
+@inject HttpClient http
 
 <h3>Archive List Customers</h3>
 
-<CustomersTable Customers="@customers" />
+@if (@customers is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <CustomersTable Customers=@customers />
+}
+
 
 
 @code {
 
-    private List<Customer> customers = [];
+    private List<Customer> customers;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        customers = new List<Customer>
-        {
-            new Customer { Id = 1, Name = "a", Email = "a@domain.com"},
-            new Customer { Id = 2, Name = "b", Email = "b@domain.com"},
-            new Customer { Id = 3, Name = "c", Email = "c@domain.com", IsArchived = true },
-        };
-
-        customers = customers.Where(c => c.IsArchived).ToList();
+        customers = await http.GetFromJsonAsync<List<Customer>>("api/customers/archive");
     }
 
 }

@@ -1,5 +1,5 @@
 ﻿@page "/customers"
-
+@inject HttpClient http
 
 <Header><img src="/favicon.png" /> Customers List</Header>
 
@@ -23,8 +23,7 @@ else
 
     private List<Customer>? customers;
 
-    [Inject]
-    private HttpClient http { get; set; }
+  
 
     private DateTime GetCurrentDate()
     {

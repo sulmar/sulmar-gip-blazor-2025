@@ -29,4 +29,9 @@ public class DbCustomerRepository : ICustomerRepository
     {
         throw new NotImplementedException();
     }
+
+    public List<Customer> GetArchive()
+    {
+        throw new NotImplementedException();
+    }
 }
