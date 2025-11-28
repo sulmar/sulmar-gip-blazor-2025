@@ -23,7 +23,7 @@ public class FakeCustomerRepository : ICustomerRepository
     }
 
     public List<Customer> GetAll()
-    {
+    {        
         return _customers.Values.Where(c => !c.IsArchived).ToList();
     }
 

@@ -2,9 +2,8 @@
 
 namespace Domain.Abstractions;
 
-public interface ICustomerRepository
+public interface ICustomerRepository : IEntityRepository<Customer>
 {
-    List<Customer> GetAll();
     List<Customer> GetArchive();
-    Customer Get(int id);
 }
+
