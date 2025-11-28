@@ -1,8 +1,6 @@
 ﻿@page "/customers"
 
-<Header>
-    <img src="/favicon.png" /> Customers List
-</Header>
+<Header><img src="/favicon.png" /> Customers List</Header>
 
 <p>@message</p>
 
@@ -24,12 +22,7 @@
 
     protected override void OnInitialized()
     {
-        customers = new List<Customer>
-        {
-            new Customer { Id =1, Name = "a", Email = "a@domain.com"},
-            new Customer { Id =2, Name = "b", Email = "b@domain.com"},
-            new Customer { Id =3, Name = "c", Email = "c@domain.com", IsArchived = true },
-        };
+        customers = 
 
         customers = customers.Where(c => !c.IsArchived).ToList();
     }
