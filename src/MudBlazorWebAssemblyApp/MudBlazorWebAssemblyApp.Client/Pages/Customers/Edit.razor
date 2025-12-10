@@ -12,7 +12,7 @@ Id = @Id
 }
 else
 {
-    <EditForm Model="@customer" FormName="CustomerForm">
+    <EditForm Model="@customer" FormName="CustomerForm" OnValidSubmit="@OnValidSubmit">
         <MudGrid>
             <MudItem xs="12" sm="7">
                 <MudCard>
@@ -31,9 +31,11 @@ else
                         <MudTextField Label="Kod klienta" @bind-Value=@customer.Code For="@(() => customer.Code)" />
                         <MudDatePicker Label="Data urodzenia" @bind-Date=@customer.Birthday For="@(()=>customer.Birthday)" />
                         <MudNumericField Label="Dochód" @bind-Value=@customer.Salary For="@(()=>customer.Salary)" />
-
-
                     </MudCardContent>
+
+                    <MudCardActions>
+                        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">Zapisz</MudButton>
+                    </MudCardActions>
                 </MudCard>
             </MudItem>
         </MudGrid>
@@ -57,6 +59,11 @@ else
     protected override async Task OnParametersSetAsync()
     {
         customer = await Api.GetById(Id);
+    }
+
+    private async Task OnValidSubmit(EditContext context)
+    {
+        
     }
 
 }
