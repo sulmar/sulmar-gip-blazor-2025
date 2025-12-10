@@ -6,4 +6,3 @@ public interface ICustomerRepository : IEntityRepository<Customer>
 {
     List<Customer> GetArchive();
 }
-

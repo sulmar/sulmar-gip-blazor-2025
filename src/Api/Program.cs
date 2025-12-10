@@ -5,8 +5,11 @@ using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
 builder.Services.AddScoped<SqlConnection>(sp => new SqlConnection(builder.Configuration.GetConnectionString("MyConnection")));
+builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
+builder.Services.AddScoped<IRegionRepository, FakeRegionRepository>();
+
+
 
 
 
@@ -33,7 +36,8 @@ app.MapGet("/", () => "Hello World!");
 // DateTimeExtensions.IsHoliday(DateTime.Today);
 DateTime.Today.IsHoliday(); // Metoda rozszerzajaca
 
-app.MapCustomersEndpoints(); 
+app.MapCustomersEndpoints();
+app.MapRegionsEndpoints();
 
 // app.MapGet("api/products", (IProductRepository repository) => repository.GetAll());
 
