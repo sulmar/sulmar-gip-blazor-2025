@@ -1,4 +1,5 @@
 using Api.Endpoints;
+using Api.Extensions;
 using Domain.Abstractions;
 using Infrastructure;
 
