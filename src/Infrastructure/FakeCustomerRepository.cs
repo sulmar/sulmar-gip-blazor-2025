@@ -11,8 +11,8 @@ public class FakeCustomerRepository : ICustomerRepository
     {
         _customers = new List<Customer>
         {
-            new Customer { Id = 1, Name = "a", Email = "a@domain.com", Region = new Region(0, "Alabama") },
-            new Customer { Id = 2, Name = "b", Email = "b@domain.com", Region = new Region(1, "Alaska") },
+            new Customer { Id = 1, Name = "a", Email = "a@domain.com", Region = new Region(0, "Alabama"), Birthday  = DateTime.Parse("1999-12-01"), Salary = 1000 },
+            new Customer { Id = 2, Name = "b", Email = "b@domain.com", Region = new Region(1, "Alaska"), Birthday  = DateTime.Parse("1980-12-10"), Salary = 1999  },
             new Customer { Id = 3, Name = "c", Email = "c@domain.com", IsArchived = true },
         }.ToDictionary(p => p.Id);
     }
