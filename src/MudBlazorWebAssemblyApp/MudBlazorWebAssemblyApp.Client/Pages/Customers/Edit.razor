@@ -11,7 +11,19 @@ Id = @Id
 }
 else
 {
-    @customer.Name
+    <EditForm Model="@customer" FormName="CustomerForm">
+        <MudGrid>
+            <MudItem xs="12" sm="7">
+                <MudCard>
+                    <MudCardContent>
+                        <MudTextField Label="Nazwa" @bind-Value=@customer.Name For="@(()=>customer.Name)" />
+                        <MudTextField Label="Email" @bind-Value=@customer.Email For="@(() => customer.Email)" />
+                        <MudCheckBox Label="Archiwalny" @bind-Value=@customer.IsArchived Color="Color.Primary" />
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
 }
 
 @code {
