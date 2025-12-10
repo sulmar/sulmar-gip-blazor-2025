@@ -13,6 +13,9 @@ Id = @Id
 else
 {
     <EditForm Model="@customer" FormName="CustomerForm" OnValidSubmit="@OnValidSubmit">
+
+        <DataAnnotationsValidator />
+
         <MudGrid>
             <MudItem xs="12" sm="7">
                 <MudCard>
