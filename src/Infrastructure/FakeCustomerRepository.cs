@@ -19,6 +19,8 @@ public class FakeCustomerRepository : ICustomerRepository
 
     public Customer Get(int id)
     {
+        Thread.Sleep(2000);
+
         return _customers[id];
     }
 

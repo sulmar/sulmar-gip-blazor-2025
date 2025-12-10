@@ -10,4 +10,5 @@ public class ApiCustomerService(HttpClient http): IAsyncCustomerService
     public Task<List<Customer>?> GetActive() => http.GetFromJsonAsync<List<Customer>>("api/customers");
     public Task<List<Customer>?> GetAll() => http.GetFromJsonAsync<List<Customer>>("api/customers");
     public Task<List<Customer>?> GetArchive() => http.GetFromJsonAsync<List<Customer>>("api/customers/archive");
+    public Task<Customer?> GetById(int id) => http.GetFromJsonAsync<Customer?>($"api/customers/{id}");
 }

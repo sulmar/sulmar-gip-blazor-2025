@@ -1,0 +1,29 @@
+﻿@page "/customers/{id:int}"
+@inject IAsyncCustomerService Api
+
+<h3>Edit</h3>
+
+Id = @Id
+
+@if (customer is null)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    @customer.Name
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Customer? customer;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        customer = await Api.GetById(Id);
+    }
+
+}

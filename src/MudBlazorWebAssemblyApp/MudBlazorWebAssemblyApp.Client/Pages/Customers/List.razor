@@ -8,6 +8,13 @@
         <PropertyColumn Property="x => x.Name" Title="Nazwa" />
         <PropertyColumn Property="x => x.Email" />
         <PropertyColumn Property="x => x.IsArchived" Title="Archiwalny" />
+        <TemplateColumn>
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton Icon="@Icons.Material.Outlined.Edit" Href="@($"/customers/{context.Item.Id}")"  />
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
     </Columns>
 </MudDataGrid>
 

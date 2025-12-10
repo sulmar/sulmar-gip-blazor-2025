@@ -6,5 +6,6 @@ public interface IAsyncEntityService<T>
     where T : BaseEntity
 {
     Task<List<T>> GetAll();
+    Task<T?> GetById(int id);
 
 }
