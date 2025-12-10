@@ -34,6 +34,10 @@ else
                         <MudTextField Label="Kod klienta" @bind-Value=@customer.Code For="@(() => customer.Code)" />
                         <MudDatePicker Label="Data urodzenia" @bind-Date=@customer.Birthday For="@(()=>customer.Birthday)" />
                         <MudNumericField Label="Dochód" @bind-Value=@customer.Salary For="@(()=>customer.Salary)" />
+
+                        <MudTextField Label="Hasło" @bind-Value=@customer.Password For="@(() => customer.Password)" />
+                        <MudTextField Label="Powtorz hasło" @bind-Value=@customer.ConfirmPassword For="@(() => customer.ConfirmPassword)" />
+
                     </MudCardContent>
 
                     <MudCardActions>

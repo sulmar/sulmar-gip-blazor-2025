@@ -15,4 +15,9 @@ public class Customer : BaseEntity
     [Range(minimum: 100, maximum: 500)]
     public decimal Salary { get; set; }
     public bool IsArchived { get; set; }
+
+    public string Password { get; set; }
+
+    [Compare(nameof(Password))]
+    public string ConfirmPassword { get; set; }
 }
