@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MudBlazorWebAssemblyApp", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MudBlazorWebAssemblyApp.Client", "MudBlazorWebAssemblyApp\MudBlazorWebAssemblyApp.Client\MudBlazorWebAssemblyApp.Client.csproj", "{B95CD4CB-CF98-40D6-96BC-C5911447B7E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{7447E9BB-417B-41EC-8229-D1FD0DC5E679}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{B95CD4CB-CF98-40D6-96BC-C5911447B7E7}.Release|x64.Build.0 = Release|Any CPU
 		{B95CD4CB-CF98-40D6-96BC-C5911447B7E7}.Release|x86.ActiveCfg = Release|Any CPU
 		{B95CD4CB-CF98-40D6-96BC-C5911447B7E7}.Release|x86.Build.0 = Release|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Debug|x64.Build.0 = Debug|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Debug|x86.Build.0 = Debug|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|x64.ActiveCfg = Release|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|x64.Build.0 = Release|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|x86.ActiveCfg = Release|Any CPU
+		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

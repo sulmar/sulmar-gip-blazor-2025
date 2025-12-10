@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace BlazorWebAssemblyApp.Services;
+namespace Application.Services;
 
 public interface IAsyncCustomerService : IAsyncEntityService<Customer>
 {

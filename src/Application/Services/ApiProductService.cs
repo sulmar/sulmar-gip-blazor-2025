@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
 using System.Net.Http.Json;
 
-namespace BlazorWebAssemblyApp.Services;
+namespace Application.Services;
 
 public class ApiProductService(HttpClient http) : IAsyncProductService
 {
