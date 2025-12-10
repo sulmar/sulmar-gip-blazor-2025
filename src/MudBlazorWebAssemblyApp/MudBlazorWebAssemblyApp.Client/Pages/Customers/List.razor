@@ -1,0 +1,23 @@
+﻿@page "/customers"
+@inject IAsyncCustomerService Api
+
+<MudText Typo="Typo.h3">Customer List</MudText>
+
+<MudDataGrid Items="customers">
+    <Columns>
+        <PropertyColumn Property="x => x.Name" Title="Nazwa" />
+        <PropertyColumn Property="x => x.Email" />
+        <PropertyColumn Property="x => x.IsArchived" Title="Archiwalny" />
+    </Columns>
+</MudDataGrid>
+
+@code {
+
+    private List<Customer>? customers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        customers = await Api.GetAll();
+    }
+
+}
