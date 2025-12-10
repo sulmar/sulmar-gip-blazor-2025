@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace Domain.Models;
 
-public class Region : BaseEntity
-{
-    public string Name { get; set; }
-}
+public record Region (int Id, string Name);
+

@@ -2,6 +2,7 @@
 
 namespace Application.Services;
 
-public interface IAsyncRegionService : IAsyncEntityService<Region>
+public interface IAsyncRegionService
 {
+    Task<List<Region>?> GetAll();
 }
