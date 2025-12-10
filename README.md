@@ -169,5 +169,5 @@ Projekt szkoleniowy - do użytku edukacyjnego.
 
 ## 👨‍💻 Autor
 
-Projekt stworzony w ramach szkolenia z Blazor 9.
+Marcin Sulecki. Projekt stworzony w ramach szkolenia z Blazor 9.
 
