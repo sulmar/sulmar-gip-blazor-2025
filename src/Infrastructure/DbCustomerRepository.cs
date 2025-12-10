@@ -34,4 +34,9 @@ public class DbCustomerRepository : ICustomerRepository
     {
         throw new NotImplementedException();
     }
+
+    public void Update(int id, Customer customer)
+    {
+        throw new NotImplementedException();
+    }
 }

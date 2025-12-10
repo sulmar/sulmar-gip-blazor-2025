@@ -33,4 +33,9 @@ public class FakeCustomerRepository : ICustomerRepository
     {
         return _customers.Values.Where(c => c.IsArchived).ToList();
     }
+
+    public void Update(int id, Customer customer)
+    {
+        throw new NotImplementedException();
+    }
 }
