@@ -1,5 +1,6 @@
 ﻿@page "/customers/{id:int}"
 @inject IAsyncCustomerService Api
+@inject IAsyncRegionService RegionApi
 
 <h3>Edit</h3>
 
@@ -19,6 +20,13 @@ else
                         <MudTextField Label="Nazwa" @bind-Value=@customer.Name For="@(()=>customer.Name)" />
                         <MudTextField Label="Email" @bind-Value=@customer.Email For="@(() => customer.Email)" />
                         <MudCheckBox Label="Archiwalny" @bind-Value=@customer.IsArchived Color="Color.Primary" />
+
+                        <MudSelect Label="Region" @bind-Value=@customer.Region>
+                            @foreach(var region in regions!)
+                            {
+                                <MudSelectItem Value="region">@region.Name</MudSelectItem>
+                            }
+                        </MudSelect>
                     </MudCardContent>
                 </MudCard>
             </MudItem>
@@ -32,6 +40,13 @@ else
     public int Id { get; set; }
 
     private Customer? customer;
+
+    private List<Region>? regions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        regions = await RegionApi.GetAll();
+    }
 
     protected override async Task OnParametersSetAsync()
     {
