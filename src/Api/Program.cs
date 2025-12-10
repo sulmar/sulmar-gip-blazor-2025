@@ -1,3 +1,4 @@
+using Api.Endpoints;
 using Domain.Abstractions;
 using Infrastructure;
 
@@ -28,9 +29,10 @@ app.UseCors(); // Middleware
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("api/customers", (ICustomerRepository repository) => repository.GetAll()); // Wstrzykiwanie zaleznosci
-app.MapGet("api/customers/archive", (ICustomerRepository repository) => repository.GetArchive());
-app.MapGet("api/customers/{id}", (int id, ICustomerRepository repository) => repository.Get(id));
+// DateTimeExtensions.IsHoliday(DateTime.Today);
+DateTime.Today.IsHoliday(); // Metoda rozszerzajaca
+
+app.MapCustomersEndpoints(); 
 
 // app.MapGet("api/products", (IProductRepository repository) => repository.GetAll());
 
