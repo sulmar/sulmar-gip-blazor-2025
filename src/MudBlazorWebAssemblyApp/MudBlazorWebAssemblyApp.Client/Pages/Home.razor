@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using MudBlazorWebAssemblyApp.Client.Services
+@inject ILocalStorageService Storage;
 @inject IJSRuntime JS
 
 <PageTitle>Home</PageTitle>
@@ -26,15 +28,15 @@
 
     private async Task ShowAlert()
     {
-        await JS.InvokeVoidAsync("alert", "Hello World!");
+      //  await JS.InvokeVoidAsync("alert", "Hello World!");
     }
 
     private async Task ShowLogConsole()
     {
         // Console.WriteLine("Hello World!");
-        await JS.InvokeVoidAsync("console.log", "Hello World!");
+        // await JS.InvokeVoidAsync("console.log", "Hello World!");
 
-        await JS.InvokeVoidAsync("x++");
+        // await JS.InvokeVoidAsync("x++");
 
     }
 
@@ -42,13 +44,13 @@
     // localStorage.setItem("accept-cookies", "true");
     private async Task SaveAccept()
     {        
-        await JS.InvokeVoidAsync("localStorage.setItem", "accept-cookies", AcceptCookies);
+        await Storage.SetItem("accept-cookies", AcceptCookies.ToString());
     }
 
     // localStorage.getItem("accept-cookies");
     private async Task LoadAccept()
     {   
-        var value = await JS.InvokeAsync<string>("localStorage.getItem", "accept-cookies");
+        var value = await Storage.GetItem("accept-cookies");
 
         AcceptCookies = bool.Parse(value);
     }   

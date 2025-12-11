@@ -1,6 +1,7 @@
 using Application.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
+using MudBlazorWebAssemblyApp.Client.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddHttpClient<IAsyncProductService, ApiProductService>(
 
 builder.Services.AddHttpClient<IAsyncRegionService, ApiRegionService>(
     http => http.BaseAddress = new Uri("https://localhost:7247"));
+
+
+builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 
 builder.Services.AddMudServices();
 

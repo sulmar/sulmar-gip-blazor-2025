@@ -1,6 +1,7 @@
 using Application.Services;
 using MudBlazor.Services;
 using MudBlazorWebAssemblyApp.Client.Pages;
+using MudBlazorWebAssemblyApp.Client.Services;
 using MudBlazorWebAssemblyApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,8 @@ builder.Services.AddHttpClient<IAsyncProductService, ApiProductService>(
 
 builder.Services.AddHttpClient<IAsyncRegionService, ApiRegionService>(
     http => http.BaseAddress = new Uri("https://localhost:7247"));
+
+builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 
 var app = builder.Build();
 
