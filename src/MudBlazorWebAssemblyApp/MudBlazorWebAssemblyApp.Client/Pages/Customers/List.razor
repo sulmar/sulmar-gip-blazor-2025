@@ -14,7 +14,8 @@ Color="Color.Primary">Dodaj</MudButton>
         <TemplateColumn>
             <CellTemplate>
                 <MudStack Row>
-                    <MudIconButton Icon="@Icons.Material.Outlined.Edit" Href="@($"/customers/{context.Item.Id}")"  />
+                    <MudIconButton Icon="@Icons.Material.Outlined.Details" Href="@($"/customers/{context.Item.Id}/view")" />
+                    <MudIconButton Icon="@Icons.Material.Outlined.Edit" Href="@($"/customers/{context.Item.Id}/edit")"  />
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>

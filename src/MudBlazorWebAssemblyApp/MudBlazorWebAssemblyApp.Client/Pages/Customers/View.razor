@@ -1,0 +1,39 @@
+﻿@page "/customers/{id:int}/view"
+@inject IAsyncCustomerService Api
+@inject IAsyncRegionService RegionApi
+
+
+<MudText Typo="Typo.h3">View Customer</MudText>
+
+@if (customer is null)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <CustomerEditForm customer="@customer" regions="@regions" />
+}
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Customer? customer;
+
+    private List<Region>? regions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        regions = await RegionApi.GetAll();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        customer = await Api.GetById(Id);
+    }
+
+
+
+}
