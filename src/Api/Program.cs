@@ -1,6 +1,9 @@
 using Api.Endpoints;
 using Api.Extensions;
 using Domain.Abstractions;
+using Domain.Models;
+using Domain.Models.Validators;
+using FluentValidation;
 using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +12,7 @@ builder.Services.AddScoped<SqlConnection>(sp => new SqlConnection(builder.Config
 builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
 builder.Services.AddScoped<IRegionRepository, FakeRegionRepository>();
 
-
-
+builder.Services.AddScoped<AbstractValidator<Customer>, CustomerValidator>();
 
 
 builder.Services.AddCors(options =>

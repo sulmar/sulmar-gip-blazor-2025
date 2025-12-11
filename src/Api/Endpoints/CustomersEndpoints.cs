@@ -1,5 +1,6 @@
 ﻿using Domain.Abstractions;
 using Domain.Models;
+using FluentValidation;
 
 namespace Api.Endpoints;
 
@@ -14,5 +15,21 @@ public static class CustomersEndpoints
         group.MapGet("/archive", (ICustomerRepository repository) => repository.GetArchive());
         group.MapGet("{id}", (int id, ICustomerRepository repository) => repository.Get(id));
         group.MapPut("{id}", (int id, Customer customer, ICustomerRepository repository) => repository.Update(id, customer));
+
+
+        group.MapPost("/", (Customer customer, AbstractValidator<Customer> validator) =>
+        {
+            // TODO: Validate Customer
+            var result = validator.Validate(customer);
+
+            if (result.IsValid)
+            {
+                // TODO: Add to repository
+                return Results.Created();
+            }
+
+            return Results.BadRequest(result.Errors);
+
+        });
     }
 }
