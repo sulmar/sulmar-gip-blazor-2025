@@ -13,4 +13,5 @@ public class Customer : BaseEntity
     public bool IsArchived { get; set; }
     public string Password { get; set; }
     public string ConfirmPassword { get; set; }
+    public bool Newsletter { get; set; }
 }

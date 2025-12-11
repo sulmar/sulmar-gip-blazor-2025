@@ -21,23 +21,26 @@ else
             <MudItem xs="12" sm="7">
                 <MudCard>
                     <MudCardContent>
-                        <MudTextField Label="Nazwa" @bind-Value=@customer.Name For="@(()=>customer.Name)" />
+                        <MudTextField Label="Nazwa" @bind-Value=@customer.Name For="@(() => customer.Name)" />
                         <MudTextField Label="Email" @bind-Value=@customer.Email For="@(() => customer.Email)" />
                         <MudCheckBox Label="Archiwalny" @bind-Value=@customer.IsArchived Color="Color.Primary" />
 
                         <MudSelect T="Region" Label="Region" @bind-Value=@customer.Region>
-                            @foreach(var region in regions!)
+                            @foreach (var region in regions!)
                             {
                                 <MudSelectItem Value="region">@region.Name</MudSelectItem>
                             }
                         </MudSelect>
 
                         <MudTextField Label="Kod klienta" @bind-Value=@customer.Code For="@(() => customer.Code)" />
-                        <MudDatePicker Label="Data urodzenia" @bind-Date=@customer.Birthday For="@(()=>customer.Birthday)" />
-                        <MudNumericField Label="Dochód" @bind-Value=@customer.Salary For="@(()=>customer.Salary)" />
+                        <MudDatePicker Label="Data urodzenia" @bind-Date=@customer.Birthday For="@(() => customer.Birthday)" />
+                        <MudNumericField Label="Dochód" @bind-Value=@customer.Salary For="@(() => customer.Salary)" />
 
                         <MudTextField Label="Hasło" @bind-Value=@customer.Password For="@(() => customer.Password)" />
                         <MudTextField Label="Powtorz hasło" @bind-Value=@customer.ConfirmPassword For="@(() => customer.ConfirmPassword)" />
+
+                        <MudSwitch Label="Zgoda na NewsLeter" @bind-Value="@customer.Newsletter" Color="Color.Primary"
+                                   For="@(() => customer.Newsletter)" />
 
                     </MudCardContent>
 
@@ -61,7 +64,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        regions = await RegionApi.GetAll();        
+        regions = await RegionApi.GetAll();
     }
 
     protected override async Task OnParametersSetAsync()
@@ -71,7 +74,7 @@ else
 
     private async Task OnValidSubmit(EditContext context)
     {
-        
+
     }
 
 }
