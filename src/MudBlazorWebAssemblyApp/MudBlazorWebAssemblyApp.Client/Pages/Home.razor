@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using MudBlazorWebAssemblyApp.Client.Services
+@using Blazored.LocalStorage
 @inject ILocalStorageService Storage;
 @inject IJSRuntime JS
 
@@ -44,15 +44,13 @@
     // localStorage.setItem("accept-cookies", "true");
     private async Task SaveAccept()
     {        
-        await Storage.SetItem("accept-cookies", AcceptCookies.ToString());
+        await Storage.SetItemAsync("accept-cookies", AcceptCookies);
     }
 
     // localStorage.getItem("accept-cookies");
     private async Task LoadAccept()
     {   
-        var value = await Storage.GetItem("accept-cookies");
-
-        AcceptCookies = bool.Parse(value);
+        AcceptCookies = await Storage.GetItemAsync<bool>("accept-cookies");
     }   
 
 

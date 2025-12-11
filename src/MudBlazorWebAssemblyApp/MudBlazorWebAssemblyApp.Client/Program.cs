@@ -1,4 +1,5 @@
 using Application.Services;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using MudBlazorWebAssemblyApp.Client.Services;
@@ -18,7 +19,8 @@ builder.Services.AddHttpClient<IAsyncRegionService, ApiRegionService>(
     http => http.BaseAddress = new Uri("https://localhost:7247"));
 
 
-builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
+// builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
+builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddMudServices();
 
