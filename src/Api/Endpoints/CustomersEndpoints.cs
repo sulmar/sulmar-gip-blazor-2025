@@ -17,9 +17,8 @@ public static class CustomersEndpoints
         group.MapPut("{id}", (int id, Customer customer, ICustomerRepository repository) => repository.Update(id, customer));
 
 
-        group.MapPost("/", (Customer customer, AbstractValidator<Customer> validator) =>
-        {
-            // TODO: Validate Customer
+        group.MapPost("/", (Customer customer, AbstractValidator<Customer> validator, ICustomerRepository repository) =>
+        {            
             var result = validator.Validate(customer);
 
             if (result.IsValid)
@@ -27,7 +26,8 @@ public static class CustomersEndpoints
                 if (customer.Code == "123-abc")
                     throw new InvalidOperationException("123-abc symbol niedozwolony");
 
-                // TODO: Add to repository
+                repository.Add(customer);
+                
                 return Results.Created();
             }
 

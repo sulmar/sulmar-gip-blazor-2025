@@ -20,6 +20,11 @@ public class DbCustomerRepository : ICustomerRepository
         this.connection = connection;
     }
 
+    public void Add(Customer entity)
+    {
+        throw new NotImplementedException();
+    }
+
     public Customer Get(int id)
     {
         throw new NotImplementedException();

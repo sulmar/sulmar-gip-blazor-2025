@@ -1,22 +1,19 @@
-﻿@page "/customers/{id:int}"
+﻿@page "/customers/create"
 @inject IAsyncCustomerService Api
 @inject IAsyncRegionService RegionApi
 @inject ISnackbar Snackbar
 @inject NavigationManager Nav
 
-<MudText Typo="Typo.h3">Edit Customer</MudText>
+<MudText Typo="Typo.h3">Create Customer</MudText>
 
-Id = @Id
-
-@if (customer is null)
+@if (regions is null )
 {
     <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
 }
 else
 {
     <EditForm Model="@customer" FormName="CustomerForm" OnValidSubmit="@OnValidSubmit">
-
-        @* <DataAnnotationsValidator /> *@
+        
         <Blazored.FluentValidation.FluentValidationValidator />
 
         <MudGrid>
@@ -56,42 +53,30 @@ else
 }
 
 @code {
-
-    [Parameter]
-    public int Id { get; set; }
-
-    private Customer? customer;
+    
+    private Customer customer = new Customer();
 
     private List<Region>? regions;
 
     protected override async Task OnInitializedAsync()
     {
         regions = await RegionApi.GetAll();
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        customer = await Api.GetById(Id);
-    }
+    }    
 
     private async Task OnValidSubmit(EditContext context)
     {
         try
         {
-            await Api.Update(customer!);
+            await Api.Add(customer!);
 
-            Snackbar.Add($"Zmodyfikowana klienta {customer!.Name}", Severity.Success);
+            Snackbar.Add($"Dodano klienta {customer!.Name}", Severity.Success);
 
             Nav.NavigateTo("/customers");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Snackbar.Add(e.Message, Severity.Error);
         }
-
-        
-
-
     }
 
 }

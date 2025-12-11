@@ -7,5 +7,6 @@ public interface IEntityRepository<T>
 {
     List<T> GetAll();    
     T Get(int id);
+    void Add(T entity);
 }
 

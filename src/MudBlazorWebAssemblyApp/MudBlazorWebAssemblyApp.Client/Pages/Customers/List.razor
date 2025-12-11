@@ -3,6 +3,9 @@
 
 <MudText Typo="Typo.h3">Customer List</MudText>
 
+<MudButton Href="/customers/create" StartIcon="@Icons.Material.Filled.Add"
+Color="Color.Primary">Dodaj</MudButton>
+
 <MudDataGrid Items="customers">
     <Columns>
         <PropertyColumn Property="x => x.Name" Title="Nazwa" />

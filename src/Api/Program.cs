@@ -9,7 +9,7 @@ using Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<SqlConnection>(sp => new SqlConnection(builder.Configuration.GetConnectionString("MyConnection")));
-builder.Services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
+builder.Services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
 builder.Services.AddScoped<IRegionRepository, FakeRegionRepository>();
 
 builder.Services.AddScoped<AbstractValidator<Customer>, CustomerValidator>();
@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
     {
        policy.WithOrigins("https://localhost:7283", "https://localhost:7194");
                                                           //   policy.AllowAnyOrigin();        
-        policy.WithMethods("GET");
+        policy.WithMethods("GET", "POST", "PUT");
         // policy.AllowAnyMethod();
         policy.AllowAnyHeader();
     });

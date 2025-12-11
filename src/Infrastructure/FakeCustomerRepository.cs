@@ -17,6 +17,14 @@ public class FakeCustomerRepository : ICustomerRepository
         }.ToDictionary(p => p.Id);
     }
 
+    public void Add(Customer entity)
+    {
+        int lastId = _customers.Values.Max(p=>p.Id);        
+        entity.Id = ++lastId;
+
+        _customers.Add(entity.Id, entity);
+    }
+
     public Customer Get(int id)
     {
         Thread.Sleep(2000);
@@ -36,6 +44,8 @@ public class FakeCustomerRepository : ICustomerRepository
 
     public void Update(int id, Customer customer)
     {
-        throw new NotImplementedException();
+        _customers.Remove(id);
+
+        _customers.Add(id, customer);
     }
 }
