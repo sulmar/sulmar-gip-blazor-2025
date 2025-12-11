@@ -1,0 +1,50 @@
+@host = https://localhost:7247
+
+@customerId = 1
+
+GET {{host}}/api/customers
+Accept: application/json
+User-Agent: chrome
+
+###
+
+GET {{host}}/api/customers/{{customerId}}
+Accept: application/json
+
+
+###
+
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "name": "abc",
+  "email": "abc@domain.com",
+  "region": {
+    "id": 0,
+    "name": "Alabama"
+  },
+  "code": null,
+  "birthday": "1999-12-01T00:00:00",
+  "salary": 1000,
+  "isArchived": false,
+  "password": null,
+  "confirmPassword": null,
+  "newsletter": false,
+  "id": 1
+}
+
+###
+
+
+
+
+
+
+
+
+
+
+
+
+
