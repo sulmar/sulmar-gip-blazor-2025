@@ -24,6 +24,9 @@ public static class CustomersEndpoints
 
             if (result.IsValid)
             {
+                if (customer.Code == "123-abc")
+                    throw new InvalidOperationException("123-abc symbol niedozwolony");
+
                 // TODO: Add to repository
                 return Results.Created();
             }

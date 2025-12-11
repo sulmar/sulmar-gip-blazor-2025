@@ -1,6 +1,7 @@
 ﻿@page "/customers/{id:int}"
 @inject IAsyncCustomerService Api
 @inject IAsyncRegionService RegionApi
+@inject ISnackbar Snackbar
 
 <h3>Edit</h3>
 
@@ -74,6 +75,19 @@ else
 
     private async Task OnValidSubmit(EditContext context)
     {
+        try
+        {
+            await Api.Add(customer!);
+
+            Snackbar.Add($"Dodano klienta {customer!.Name}", Severity.Success);
+        }
+        catch(Exception e)
+        {
+            Snackbar.Add(e.Message, Severity.Error);
+        }
+
+        
+
 
     }
 

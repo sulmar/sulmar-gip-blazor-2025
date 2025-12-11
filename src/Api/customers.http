@@ -37,6 +37,28 @@ Content-Type: application/json
 ###
 
 
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "name": "abc",
+  "email": "abc@domain.com",
+  "region": {
+    "id": 0,
+    "name": "Alabama"
+  },
+  "code": "123-abc",
+  "birthday": "1999-12-01T00:00:00",
+  "salary": 100,
+  "isArchived": false,
+  "password": null,
+  "confirmPassword": null,
+  "newsletter": false,
+  "id": 1
+}
+
+###
+
 
 
 
