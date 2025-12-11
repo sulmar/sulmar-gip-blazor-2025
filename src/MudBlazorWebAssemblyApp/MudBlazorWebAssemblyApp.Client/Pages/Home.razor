@@ -22,13 +22,21 @@
 <MudButton Variant="Variant.Filled" StartIcon="@Icons.Custom.Uncategorized.Bacteria" Color="Color.Dark" @onclick=@LoadAccept>Pobierz zgode</MudButton>
 
 
+<MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Train" Color="Color.Dark"
+           @onclick=@GetGeolocation>Pobierz lokalizację</MudButton>
+
+
+<MudText Typo="Typo.h5">lat: @Latitude lng: @Longitude</MudText>
+
+
+
 @code {
 
     private bool AcceptCookies;
 
     private async Task ShowAlert()
     {
-      //  await JS.InvokeVoidAsync("alert", "Hello World!");
+        //  await JS.InvokeVoidAsync("alert", "Hello World!");
     }
 
     private async Task ShowLogConsole()
@@ -52,6 +60,34 @@
     {   
         AcceptCookies = await Storage.GetItemAsync<bool>("accept-cookies");
     }   
+
+    private async Task GetGeolocation()
+    {
+        Console.WriteLine("Pobierz lokalizacje...");
+
+        await JS.InvokeVoidAsync("getLocation", _dotnetRef);
+    }
+
+    private DotNetObjectReference<Home> _dotnetRef;
+
+    protected override void OnInitialized()
+    {
+        _dotnetRef = DotNetObjectReference.Create(this);
+    }
+
+    private double Latitude { get; set; }
+    private double Longitude { get; set; }
+
+    [JSInvokable]
+    public void OnLocationChanged(double latitude, double longitude)
+    {
+        Console.WriteLine($"{latitude} {longitude}");
+
+        Latitude = latitude;
+        Longitude = longitude;
+
+        StateHasChanged();
+    }
 
 
 }
