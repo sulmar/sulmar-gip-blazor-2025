@@ -48,6 +48,9 @@
     [Parameter]
     public EventCallback<EditContext> OnValidSubmit { get; set; }
 
+    [Parameter]
+    public bool ReadOnly { get; set; }
+
     private async Task OnValidSubmitHandler(EditContext context)
     {
         await OnValidSubmit.InvokeAsync(context); // wywolanie zdarzenia (call)
