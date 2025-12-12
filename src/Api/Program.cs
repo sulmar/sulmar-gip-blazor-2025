@@ -1,10 +1,14 @@
 using Api.Endpoints;
 using Api.Extensions;
+using Api.Middlewares;
 using Domain.Abstractions;
 using Domain.Models;
 using Domain.Models.Validators;
-using FluentValidation;
+using FluentValidation; 
 using Infrastructure;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,13 +31,84 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Rejestracja uslugi do generowania dokumentacji w formacie OpenApi (Swagger)
+// dotnet add package Microsoft.AspNetCore.OpenApi
+builder.Services.AddOpenApi();
+
+// dotnet add package Scalar.AspNetCore
+
+
+
 var app = builder.Build();
 
+
 app.UseCors(); // Middleware
+
+#region
+// Warsta posrednia (Middleware)
+/*
+app.Use(async (context, next) =>
+{
+    // Logger enter
+    Console.WriteLine($"{context.Request.Method} {context.Request.Path}");
+
+    // Auth
+    if (!context.Request.Headers.TryGetValue("x-secret-key", out var secretkey) || secretkey != "123abc")
+    {
+        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+
+        Console.WriteLine($"{context.Response.StatusCode}");
+
+        return;
+    }
+
+    // 
+
+    await next();
+
+    Console.WriteLine($"{context.Response.StatusCode}");
+});
+*/
+
+
+// Logger
+//app.Use(async (context, next) =>
+//{
+//    Console.WriteLine($"{context.Request.Method} {context.Request.Path}");
+
+//    await next();
+
+//    Console.WriteLine($"{context.Response.StatusCode}");
+//});
+
+// Authorization Secret Key
+//app.Use(async (context, next) =>
+//{
+//    if (!context.Request.Headers.TryGetValue("x-secret-key", out var secretkey) || secretkey != "123abc")
+//    {
+//        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+//        return;
+//    }
+
+//    await next();    
+//});
+
+#endregion
+
+// app.UseMiddleware<LoggerMiddleware>();
+app.UseLogger();
+app.UseSecretKey("abc-123");
+
 
 // Minimal Api
 
 app.MapGet("/", () => "Hello World!");
+
+// https://localhost:7247/openapi/v1.json
+app.MapOpenApi();
+
+// https://localhost:7247/scalar
+app.MapScalarApiReference(options =>options.Title = "Blazor Api");
 
 // DateTimeExtensions.IsHoliday(DateTime.Today);
 DateTime.Today.IsHoliday(); // Metoda rozszerzajaca

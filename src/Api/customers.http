@@ -1,10 +1,12 @@
 @host = https://localhost:7247
-
 @customerId = 1
+
+###
 
 GET {{host}}/api/customers
 Accept: application/json
 User-Agent: chrome
+x-secret-key: 123abc
 
 ###
 

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MudBlazorWebAssemblyApp.Cli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{7447E9BB-417B-41EC-8229-D1FD0DC5E679}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,18 @@ Global
 		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|x64.Build.0 = Release|Any CPU
 		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|x86.ActiveCfg = Release|Any CPU
 		{7447E9BB-417B-41EC-8229-D1FD0DC5E679}.Release|x86.Build.0 = Release|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Debug|x64.Build.0 = Debug|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Debug|x86.Build.0 = Debug|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Release|x64.ActiveCfg = Release|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Release|x64.Build.0 = Release|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Release|x86.ActiveCfg = Release|Any CPU
+		{D1482F7D-73F9-4BD0-B95D-34A2F7748EC3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

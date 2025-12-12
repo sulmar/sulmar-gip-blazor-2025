@@ -11,7 +11,7 @@ public static class CustomersEndpoints
     {
         var group = routes.MapGroup(prefix);
 
-        group.MapGet("/", (ICustomerRepository repository) => repository.GetAll()); // Wstrzykiwanie zaleznosci
+        group.MapGet("", (ICustomerRepository repository) => repository.GetAll()); // Wstrzykiwanie zaleznosci
         group.MapGet("/archive", (ICustomerRepository repository) => repository.GetArchive());
         group.MapGet("{id}", (int id, ICustomerRepository repository) => repository.Get(id));
         group.MapPut("{id}", (int id, Customer customer, ICustomerRepository repository) => repository.Update(id, customer));
