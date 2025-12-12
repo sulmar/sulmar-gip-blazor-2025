@@ -1,8 +1,27 @@
 ﻿@page "/customers/{id:int}/edit"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 @inject IAsyncCustomerService Api
 @inject IAsyncRegionService RegionApi
 @inject ISnackbar Snackbar
 @inject NavigationManager Nav
+
+@* @inject IAuthorizationService AuthorizationService
+@inject AuthenticationStateProvider AuthStateProvider
+@attribute [Authorize(Policy = "VIP")]
+ *@
+
+@* <AuthorizeView>
+   <Authorized>
+       Witaj @context.User.Identity.Name !
+   </Authorized>
+
+   <NotAuthorized>
+       Nie masz dostepu
+   </NotAuthorized>
+
+</AuthorizeView> *@
+
 
 <MudText Typo="Typo.h3">Edit Customer</MudText>
 
@@ -24,9 +43,10 @@ else
 
     private List<Region>? regions;
 
+    
     protected override async Task OnInitializedAsync()
     {
-        regions = await RegionApi.GetAll();
+        regions = await RegionApi.GetAll();      
     }
 
     protected override async Task OnParametersSetAsync()
@@ -41,6 +61,15 @@ else
             await Api.Update(customer!);
 
             Snackbar.Add($"Zmodyfikowana klienta {customer!.Name}", Severity.Success);
+            
+            /*
+            var authState = await AuthStateProvider.GetAuthenticationStateAsync();            
+
+            var email = authState.User.FindFirst(c => c.Type == "email")?.Value;
+
+            // TODO: send email to
+
+            */
 
             Nav.NavigateTo("/customers");
         }

@@ -9,6 +9,7 @@ using Infrastructure;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Scalar.AspNetCore;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +38,15 @@ builder.Services.AddOpenApi();
 
 // dotnet add package Scalar.AspNetCore
 
-
+/* Dodanie autoryzacji
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization(options => options.AddPolicy("VIP", policy =>
+{
+    policy.RequireAuthenticatedUser();
+    policy.RequireClaim("gold");
+    policy.RequireRole("developer");    
+}));
+*/
 
 var app = builder.Build();
 
@@ -112,6 +121,20 @@ app.MapScalarApiReference(options =>options.Title = "Blazor Api");
 
 // DateTimeExtensions.IsHoliday(DateTime.Today);
 DateTime.Today.IsHoliday(); // Metoda rozszerzajaca
+
+app.MapGet("/secret", (HttpContext context) =>
+{
+    ClaimsIdentity identity = (ClaimsIdentity) context.User.Identity;
+
+    var email = context.User.FindFirstValue("email");
+    
+    if (identity.HasClaim("permission", "print"))
+    {
+
+    }    
+
+    Console.WriteLine();
+});
 
 app.MapCustomersEndpoints();
 app.MapRegionsEndpoints();

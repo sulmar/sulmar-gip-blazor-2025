@@ -32,6 +32,7 @@ builder.Services.AddHttpClient<IAsyncRegionService, ApiRegionService>(
 // builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 builder.Services.AddBlazoredLocalStorage();
 
+
 builder.Services.AddMudServices();
 
 await builder.Build().RunAsync();
