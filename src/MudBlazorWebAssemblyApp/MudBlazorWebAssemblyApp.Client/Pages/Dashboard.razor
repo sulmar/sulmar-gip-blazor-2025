@@ -1,0 +1,60 @@
+﻿@page "/dashboard"
+@using Microsoft.AspNetCore.SignalR.Client
+@implements IAsyncDisposable 
+
+<MudText Typo="Typo.h3">Dashboard</MudText>
+
+@if (Item is null)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudGrid Justify="Justify.Center">
+        <MudItem>
+            <MudPaper Height="140px" Width="140px">
+                <MudText Align="Align.Center"><b>@Item.Sessions</b> </MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem>
+            <MudPaper Height="140px" Width="140px">
+                <MudText Align="Align.Center"><b>@Item.ProductCount</b> </MudText>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+}
+
+
+@code {
+
+    public record DashboardItem(int Sessions, int ProductCount);
+
+    private DashboardItem Item { get; set; }
+
+    private HubConnection connection;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        connection = new HubConnectionBuilder()
+                            .WithUrl("https://localhost:7247/signalr/dashboard")
+                            .Build();
+
+        connection.On<DashboardItem>("DashboardChanged", item =>
+        {
+            Item = item;
+
+            StateHasChanged();
+        });
+
+        await connection.StartAsync();
+    }
+
+
+    public async ValueTask DisposeAsync()
+    {
+        await connection.StopAsync();
+    }
+
+}

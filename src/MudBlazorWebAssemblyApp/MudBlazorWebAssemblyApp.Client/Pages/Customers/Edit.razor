@@ -32,6 +32,10 @@
 else
 {
     <CustomerEditForm customer="@customer" regions="@regions" OnValidSubmit="@OnValidSubmit" />
+    
+    <MudButton ButtonType="ButtonType.Button" Color="Color.Success" Variant="Variant.Filled" @onclick=@GenerateDocument
+    >Wygeneruj dokument</MudButton>
+
 }
 
 @code {
@@ -43,7 +47,7 @@ else
 
     private List<Region>? regions;
 
-    
+
     protected override async Task OnInitializedAsync()
     {
         regions = await RegionApi.GetAll();      
@@ -61,7 +65,7 @@ else
             await Api.Update(customer!);
 
             Snackbar.Add($"Zmodyfikowana klienta {customer!.Name}", Severity.Success);
-            
+
             /*
             var authState = await AuthStateProvider.GetAuthenticationStateAsync();            
 
@@ -71,16 +75,21 @@ else
 
             */
 
-            Nav.NavigateTo("/customers");
+                        Nav.NavigateTo("/customers");
         }
         catch(Exception e)
         {
             Snackbar.Add(e.Message, Severity.Error);
         }
 
+
+
+
+    }
+
+    private async Task GenerateDocument()
+    {
         
-
-
     }
 
 }

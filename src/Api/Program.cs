@@ -1,5 +1,7 @@
+using Api.BackgroundServices;
 using Api.Endpoints;
 using Api.Extensions;
+using Api.Hubs;
 using Api.Middlewares;
 using Domain.Abstractions;
 using Domain.Models;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Scalar.AspNetCore;
 using System.Security.Claims;
+using System.Threading.Tasks.Dataflow;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +50,13 @@ builder.Services.AddAuthorization(options => options.AddPolicy("VIP", policy =>
     policy.RequireRole("developer");    
 }));
 */
+
+builder.Services.AddScoped<IDocumentService, FakeDocumentService>();
+
+// Rejestracja uslugi pracujacej w tle
+builder.Services.AddHostedService<DashboardBackgroundService>();
+
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -139,6 +149,15 @@ app.MapGet("/secret", (HttpContext context) =>
 app.MapCustomersEndpoints();
 app.MapRegionsEndpoints();
 
+app.MapPost("api/documents", async (IDocumentService documentService, Customer customer) =>
+{
+    await documentService.Generate(customer);
+
+    return Results.Ok();
+});
+
 // app.MapGet("api/products", (IProductRepository repository) => repository.GetAll());
+
+app.MapHub<DashboardHub>("signalr/dashboard");
 
 app.Run();
